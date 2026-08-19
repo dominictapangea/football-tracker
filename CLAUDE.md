@@ -88,9 +88,47 @@ Zero monetizare în v1. Nu integra Stripe sau orice procesator de plăți până
 
 ---
 
+## Skill-uri Claude Code — folosește-le activ
+
+Sesiunile de lucru pe acest proiect au acces la un set de skill-uri instalate (plugin-uri + skill-uri built-in). Nu le trata ca opționale — verifică la fiecare task dacă unul dintre ele se potrivește, și invocă-l în loc să improvizezi manual un echivalent mai slab. Mai jos e harta: ce skill, pentru ce situație din acest proiect.
+
+**Din plugin-ul `superpowers` (workflow de dezvoltare):**
+- `superpowers:using-superpowers` — verifică la începutul oricărei conversații ce skill-uri există înainte de a răspunde ad-hoc.
+- `superpowers:brainstorming` — înainte de a construi orice funcționalitate nouă (ex: un item din lista v1, sau orice idee din "Amânat pentru v2+" dacă userul cere explicit să înceapă lucrul la ea) — clarifică intenția și design-ul înainte de cod.
+- `superpowers:writing-plans` — când există o cerință/spec multi-pas (ex: "adaugă întreg fluxul de adăugare meci") — scrie planul înainte să atingi codul.
+- `superpowers:test-driven-development` — la orice feature sau bugfix, înainte de a scrie codul de implementare.
+- `superpowers:systematic-debugging` — la orice bug, test picat sau comportament neașteptat, înainte de a propune un fix.
+- `superpowers:executing-plans` / `superpowers:subagent-driven-development` — pentru a executa un plan scris anterior, cu checkpoint-uri de review.
+- `superpowers:dispatching-parallel-agents` — când apar 2+ task-uri independente (fără stare comună) care pot rula în paralel.
+- `superpowers:using-git-worktrees` — înainte de a începe lucru pe o feature care are nevoie de izolare față de workspace-ul curent.
+- `superpowers:requesting-code-review` / `superpowers:receiving-code-review` — la finalizarea unei implementări majore, înainte de merge; tratează feedback-ul primit cu rigoare, nu doar acceptare performativă.
+- `superpowers:verification-before-completion` — obligatoriu înainte de a declara orice lucru "gata", "fixat" sau "trece" — rulează comenzile de verificare și confirmă output-ul, nu presupune.
+- `superpowers:finishing-a-development-branch` — când implementarea e completă și toate testele trec, ca să decizi cum integrezi munca (merge, PR etc.).
+- `superpowers:writing-skills` — dacă apare nevoia să creezi sau editezi un skill nou pentru acest proiect.
+
+**Din plugin-ul `ui-ux-pro-max` (design & UI):**
+- `ui-ux-pro-max:ui-ux-pro-max` — la orice task de design/UI: pagini, componente, accesibilitate, layout responsive, tipografie, culoare, iconuri — relevant constant, dat fiind că userii accesează majoritar de pe mobil.
+- `ui-ux-pro-max:ui-styling` — la implementare efectivă de UI cu Tailwind (formulare, dashboard, componente accesibile, dark mode).
+- `ui-ux-pro-max:design-system` — dacă apare nevoia de tokens de design consistente (spacing, culoare, tipografie) pe măsură ce UI-ul crește.
+- `ui-ux-pro-max:brand` — dacă/când produsul capătă identitate vizuală proprie (nume, ton, culori de brand).
+- `ui-ux-pro-max:banner-design` / `ui-ux-pro-max:slides` / `ui-ux-pro-max:design` (logo, CIP, social) — doar dacă userul cere explicit materiale de marketing/prezentare — nu relevante pentru v1 funcțional.
+
+**Skill-uri built-in:**
+- `code-review` — după orice unitate de lucru semnificativă, înainte de commit, pentru bug-uri de corectitudine și oportunități de simplificare.
+- `simplify` — pe cod deja scris, pentru reuse/eficiență, fără să vâneze bug-uri (complementar cu `code-review`).
+- `security-review` — obligatoriu înainte de a considera gata orice cod care atinge auth (Clerk), acces la date per-user (Prisma queries — ownership checks), sau input de la user.
+- `run` — pentru a porni și verifica vizual aplicația (dev server, testare manuală end-to-end cerută explicit în lista v1).
+- `artifact-design` / `artifact-diagramming` / `artifact-capabilities` — dacă livrezi ceva ca Artifact (rapoarte, mockup-uri, diagrame) — de încărcat înainte de a scrie fișierul.
+- `dataviz` — dacă/când dashboard-ul de statistici capătă grafice (momentan e text simplu, dar la orice adăugare de chart, verifică skill-ul întâi).
+- `update-config` — pentru orice modificare de `.claude/settings.json` sau permisiuni.
+- `fewer-permission-prompts` — dacă prompt-urile de permisiune devin repetitive pe comenzi read-only.
+- `init` — doar dacă CLAUDE.md ar trebui regenerat de la zero (nu e cazul, există deja).
+
+Regula generală: dacă un skill din listă se potrivește cu ce urmează să faci, invocă-l explicit prin tool-ul `Skill` înainte de a proceda manual — nu presupune că abordarea implicită e suficientă doar pentru că e mai rapidă.
+
 ## Workflow Git & Commit-uri
 
-- Fă commit local (`git add` + `git commit`) după fiecare unitate logică de lucru terminată (ex: după ce ai implementat complet formularul de adăugare meci, nu după fiecare linie de cod)
-- Folosește mesaje de commit descriptive, în engleză, stil conventional commits (`feat: add match logging form`, `fix: correct stats calculation`, `chore: setup prisma schema`)
-- NU face `git push` automat către GitHub — push-ul rămâne manual, doar la cererea mea explicită ("push pe GitHub" sau similar)
+- Fă commit local (`git add` + `git commit`) după fiecare modificare/schimbare relevantă făcută în fișiere — nu aștepta să se acumuleze mai multe schimbări nelegate între ele. "Relevantă" înseamnă orice unitate de lucru cu sens de sine stătător (ex: un fix, un fișier nou de configurare, un endpoint, o pagină, o secțiune din schema Prisma) — nu fiecare linie editată izolat.
+- Fiecare commit trebuie să aibă un mesaj specific, descriptiv, în engleză, stil conventional commits, care reflectă exact ce s-a schimbat și de ce (`feat: add match logging form`, `fix: correct stats calculation`, `chore: setup prisma schema`) — nu mesaje generice de tip "update files" sau "changes".
+- NU face `git push` automat către GitHub — push-ul rămâne manual, doar la cererea mea explicită ("push pe GitHub" sau similar). Commit-urile locale se fac fără să aștepți aprobare, dar push-ul necesită mereu cererea mea directă.
 - Dacă folderul nu are încă un repository git inițializat, întreabă înainte să inițializezi unul
