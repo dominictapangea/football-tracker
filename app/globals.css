@@ -12,9 +12,12 @@
   --primary-foreground: #fafaf9;
   --accent: #a16207;
   --accent-foreground: #ffffff;
+  --turf: #1b2e1f;
   --destructive: #b91c1c;
   --destructive-foreground: #ffffff;
   --ring: #a16207;
+  --glow-1: 20% -10%, rgba(161, 98, 7, 0.07);
+  --glow-2: 100% 115%, rgba(27, 46, 31, 0.05);
 }
 
 @theme inline {
@@ -29,6 +32,7 @@
   --color-primary-foreground: var(--primary-foreground);
   --color-accent: var(--accent);
   --color-accent-foreground: var(--accent-foreground);
+  --color-turf: var(--turf);
   --color-destructive: var(--destructive);
   --color-destructive-foreground: var(--destructive-foreground);
   --color-ring: var(--ring);
@@ -48,12 +52,18 @@
     --primary: #fafaf9;
     --primary-foreground: #0c0a09;
     --accent: #d97706;
+    --glow-1: 15% -15%, rgba(217, 119, 6, 0.16);
+    --glow-2: 100% 115%, rgba(45, 74, 52, 0.5);
   }
 }
 
 body {
-  background: var(--background);
   color: var(--foreground);
+  background-color: var(--background);
+  background-image:
+    radial-gradient(1100px 650px at var(--glow-1), transparent 65%),
+    radial-gradient(900px 550px at var(--glow-2), transparent 60%);
+  background-repeat: no-repeat;
   font-family: var(--font-sans), Arial, Helvetica, sans-serif;
 }
 
@@ -70,11 +80,11 @@ h3 {
   }
 
   .btn-primary {
-    @apply inline-flex min-h-11 items-center justify-center gap-2 rounded-md bg-primary px-6 py-2.5 text-sm font-semibold uppercase tracking-wide text-primary-foreground transition-opacity hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:pointer-events-none disabled:opacity-50;
+    @apply relative inline-flex min-h-11 items-center justify-center gap-2 overflow-hidden rounded-md bg-primary px-6 py-2.5 text-sm font-semibold uppercase tracking-wide text-primary-foreground transition-transform duration-150 hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background active:scale-[0.97] disabled:pointer-events-none disabled:opacity-50;
   }
 
   .btn-secondary {
-    @apply inline-flex min-h-11 items-center justify-center gap-2 rounded-md border border-border bg-transparent px-6 py-2.5 text-sm font-semibold uppercase tracking-wide text-foreground transition-colors hover:border-accent hover:text-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background;
+    @apply relative inline-flex min-h-11 items-center justify-center gap-2 rounded-md border border-border bg-transparent px-6 py-2.5 text-sm font-semibold uppercase tracking-wide text-foreground transition-all duration-150 hover:border-accent hover:text-accent hover:shadow-[0_0_0_1px_var(--accent),0_0_16px_-4px_var(--accent)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background active:scale-[0.97];
   }
 
   .btn-danger-ghost {
@@ -91,5 +101,42 @@ h3 {
 
   .card {
     @apply rounded-lg border border-border bg-card;
+  }
+}
+
+/* Floodlight sweep on primary buttons: a light bar glides across on hover,
+   like a stadium light catching a scoreboard panel. */
+.btn-primary::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    115deg,
+    transparent 40%,
+    color-mix(in srgb, var(--accent) 55%, transparent) 50%,
+    transparent 60%
+  );
+  transform: translateX(-120%);
+  pointer-events: none;
+}
+
+.btn-primary:hover::after {
+  transform: translateX(120%);
+  transition: transform 0.6s ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .btn-primary::after {
+    display: none;
+  }
+
+  .btn-primary,
+  .btn-secondary {
+    transition: none;
+  }
+
+  .btn-primary:active,
+  .btn-secondary:active {
+    transform: none;
   }
 }

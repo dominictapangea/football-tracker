@@ -104,7 +104,7 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
                 key={item.href}
                 href={item.href}
                 aria-current={active ? "page" : undefined}
-                className={`flex min-h-14 flex-1 flex-col items-center justify-center gap-0.5 text-[0.7rem] font-semibold uppercase tracking-wide transition-colors ${
+                className={`flex min-h-14 flex-1 flex-col items-center justify-center gap-0.5 text-[0.7rem] font-semibold uppercase tracking-wide transition-transform duration-150 active:scale-90 ${
                   active ? "text-accent" : "text-muted-foreground"
                 }`}
               >
