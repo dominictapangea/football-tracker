@@ -126,9 +126,11 @@ Sesiunile de lucru pe acest proiect au acces la un set de skill-uri instalate (p
 
 Regula generală: dacă un skill din listă se potrivește cu ce urmează să faci, invocă-l explicit prin tool-ul `Skill` înainte de a proceda manual — nu presupune că abordarea implicită e suficientă doar pentru că e mai rapidă.
 
+---
+
 ## Workflow Git & Commit-uri
 
-- Fă commit local (`git add` + `git commit`) după fiecare modificare/schimbare relevantă făcută în fișiere — nu aștepta să se acumuleze mai multe schimbări nelegate între ele. "Relevantă" înseamnă orice unitate de lucru cu sens de sine stătător (ex: un fix, un fișier nou de configurare, un endpoint, o pagină, o secțiune din schema Prisma) — nu fiecare linie editată izolat.
+- Fă commit local (`git add` + `git commit`) după fiecare modificare/schimbare relevantă făcută în fișiere — nu aștepta să se acumuleze mai multe schimbări nelegate între ele. "Relevantă" înseamnă orice unitate de lucru cu sens de sine stătător (ex: un fix, un fișier nou de configurare, un endpoint, o pagină, o secțiune din schema Prisma) — nu fiecare linie editată izolat. Condiție obligatorie: schimbarea trebuie să lase proiectul într-o stare funcțională (compilează/rulează) — nu face commit pe o stare intermediară spartă (ex: schema Prisma modificată dar nemigrată, o componentă creată dar neconectată).
 - Fiecare commit trebuie să aibă un mesaj specific, descriptiv, în engleză, stil conventional commits, care reflectă exact ce s-a schimbat și de ce (`feat: add match logging form`, `fix: correct stats calculation`, `chore: setup prisma schema`) — nu mesaje generice de tip "update files" sau "changes".
 - NU face `git push` automat către GitHub — push-ul rămâne manual, doar la cererea mea explicită ("push pe GitHub" sau similar). Commit-urile locale se fac fără să aștepți aprobare, dar push-ul necesită mereu cererea mea directă.
 - Dacă folderul nu are încă un repository git inițializat, întreabă înainte să inițializezi unul
