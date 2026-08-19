@@ -1,5 +1,6 @@
 import { getCurrentPlayer } from "@/lib/auth";
 import { updateProfile } from "./actions";
+import { SubmitButton } from "@/components/motion/submit-button";
 
 export default async function ProfilPage() {
   const player = await getCurrentPlayer();
@@ -36,9 +37,9 @@ export default async function ProfilPage() {
             className="field-input"
           />
         </div>
-        <button type="submit" className="btn-primary mt-2 w-full">
+        <SubmitButton variant="primary" className="mt-2 w-full" pendingLabel="Se salvează...">
           Salvează
-        </button>
+        </SubmitButton>
       </form>
     </div>
   );

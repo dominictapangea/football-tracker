@@ -1,23 +1,29 @@
 import Link from "next/link";
 import { getCurrentPlayer } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
+import { StatCounter } from "@/components/motion/stat-counter";
+import { StaggerReveal } from "@/components/motion/stagger-reveal";
+import { HeroHighlight } from "@/components/motion/hero-highlight";
 
 export default async function DashboardPage() {
   const player = await getCurrentPlayer();
 
   const matches = await prisma.match.findMany({
     where: { playerId: player.id },
+    orderBy: { date: "desc" },
   });
 
   const totalMatches = matches.length;
   const totalGoals = matches.reduce((sum, m) => sum + m.goals, 0);
   const totalAssists = matches.reduce((sum, m) => sum + m.assists, 0);
-  const avgGoals = totalMatches > 0 ? (totalGoals / totalMatches).toFixed(2) : "0.00";
+  const avgGoals = totalMatches > 0 ? totalGoals / totalMatches : 0;
+  const latestMatch = matches[0];
 
   const stats = [
     {
       label: "Meciuri jucate",
       value: totalMatches,
+      decimals: 0,
       icon: (
         <path
           strokeLinecap="round"
@@ -29,6 +35,7 @@ export default async function DashboardPage() {
     {
       label: "Goluri",
       value: totalGoals,
+      decimals: 0,
       icon: (
         <>
           <circle cx="12" cy="12" r="9" />
@@ -42,6 +49,7 @@ export default async function DashboardPage() {
     {
       label: "Assist-uri",
       value: totalAssists,
+      decimals: 0,
       icon: (
         <path
           strokeLinecap="round"
@@ -53,6 +61,7 @@ export default async function DashboardPage() {
     {
       label: "Medie goluri/meci",
       value: avgGoals,
+      decimals: 2,
       icon: (
         <path
           strokeLinecap="round"
@@ -72,7 +81,17 @@ export default async function DashboardPage() {
         Statisticile tale de fotbal amator.
       </p>
 
-      <div className="mt-6 grid grid-cols-2 gap-4 sm:grid-cols-4">
+      {latestMatch ? (
+        <HeroHighlight
+          dateLabel={new Date(latestMatch.date).toLocaleDateString("ro-RO")}
+          note={latestMatch.note}
+          goals={latestMatch.goals}
+          assists={latestMatch.assists}
+          rating={latestMatch.rating}
+        />
+      ) : null}
+
+      <StaggerReveal className="mt-6 grid grid-cols-2 gap-4 sm:grid-cols-4">
         {stats.map((stat) => (
           <div key={stat.label} className="card border-t-2 border-t-accent p-4">
             <svg
@@ -84,13 +103,15 @@ export default async function DashboardPage() {
             >
               {stat.icon}
             </svg>
-            <p className="mt-3 font-display text-4xl font-bold text-foreground">
-              {stat.value}
-            </p>
+            <StatCounter
+              value={stat.value}
+              decimals={stat.decimals}
+              className="mt-3 font-display text-4xl font-bold text-foreground"
+            />
             <p className="eyebrow mt-1">{stat.label}</p>
           </div>
         ))}
-      </div>
+      </StaggerReveal>
 
       <div className="mt-8 flex flex-wrap gap-3">
         <Link href="/meciuri/adauga" className="btn-primary">

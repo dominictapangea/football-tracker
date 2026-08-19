@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { UserButton } from "@clerk/nextjs";
+import { PageTransition } from "@/components/motion/page-transition";
 
 const navItems = [
   {
@@ -89,7 +90,7 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
       </header>
 
       <main className="mx-auto w-full max-w-3xl flex-1 px-4 pb-24 pt-6 sm:pb-6">
-        {children}
+        <PageTransition>{children}</PageTransition>
       </main>
 
       <nav

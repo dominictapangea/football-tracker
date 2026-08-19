@@ -1,3 +1,5 @@
+import { SubmitButton } from "@/components/motion/submit-button";
+
 type MatchFormProps = {
   action: (formData: FormData) => void | Promise<void>;
   submitLabel: string;
@@ -92,9 +94,9 @@ export function MatchForm({ action, submitLabel, match }: MatchFormProps) {
         />
       </div>
 
-      <button type="submit" className="btn-primary mt-2 w-full">
+      <SubmitButton variant="primary" className="mt-2 w-full" pendingLabel="Se salvează...">
         {submitLabel}
-      </button>
+      </SubmitButton>
     </form>
   );
 }

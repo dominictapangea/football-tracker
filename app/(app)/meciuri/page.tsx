@@ -2,6 +2,8 @@ import Link from "next/link";
 import { getCurrentPlayer } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { deleteMatch } from "./actions";
+import { StaggerReveal } from "@/components/motion/stagger-reveal";
+import { SubmitButton } from "@/components/motion/submit-button";
 
 export default async function MeciuriPage() {
   const player = await getCurrentPlayer();
@@ -31,7 +33,7 @@ export default async function MeciuriPage() {
           </Link>
         </div>
       ) : (
-        <ul className="mt-6 flex flex-col gap-3">
+        <StaggerReveal as="ul" className="mt-6 flex flex-col gap-3">
           {matches.map((match) => (
             <li key={match.id} className="card p-4">
               <div className="flex items-start justify-between gap-4">
@@ -48,21 +50,21 @@ export default async function MeciuriPage() {
                 <div className="flex shrink-0 items-center gap-2 text-sm">
                   <Link
                     href={`/meciuri/${match.id}`}
-                    className="flex min-h-11 items-center rounded-md px-2 font-medium text-foreground transition-colors hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                    className="flex min-h-11 items-center rounded-md px-2 font-medium text-foreground transition-colors hover:bg-muted active:scale-[0.97] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                   >
                     Editează
                   </Link>
                   <form action={deleteMatch}>
                     <input type="hidden" name="id" value={match.id} />
-                    <button type="submit" className="btn-danger-ghost">
+                    <SubmitButton variant="danger-ghost" pendingLabel="Se șterge...">
                       Șterge
-                    </button>
+                    </SubmitButton>
                   </form>
                 </div>
               </div>
             </li>
           ))}
-        </ul>
+        </StaggerReveal>
       )}
     </div>
   );
