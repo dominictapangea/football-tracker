@@ -17,14 +17,11 @@ function toDateInputValue(date: Date) {
 
 export function MatchForm({ action, submitLabel, match }: MatchFormProps) {
   return (
-    <form action={action} className="mt-6 flex max-w-sm flex-col gap-4">
+    <form action={action} className="mt-6 flex max-w-sm flex-col gap-5">
       {match ? <input type="hidden" name="id" value={match.id} /> : null}
 
       <div>
-        <label
-          htmlFor="date"
-          className="block text-sm font-medium text-zinc-700 dark:text-zinc-300"
-        >
+        <label htmlFor="date" className="field-label">
           Data
         </label>
         <input
@@ -33,15 +30,12 @@ export function MatchForm({ action, submitLabel, match }: MatchFormProps) {
           type="date"
           defaultValue={match ? toDateInputValue(match.date) : toDateInputValue(new Date())}
           required
-          className="mt-1 w-full rounded-md border border-zinc-300 px-3 py-2 text-sm dark:border-zinc-700 dark:bg-zinc-900"
+          className="field-input"
         />
       </div>
 
       <div>
-        <label
-          htmlFor="note"
-          className="block text-sm font-medium text-zinc-700 dark:text-zinc-300"
-        >
+        <label htmlFor="note" className="field-label">
           Context (opțional)
         </label>
         <input
@@ -50,16 +44,13 @@ export function MatchForm({ action, submitLabel, match }: MatchFormProps) {
           type="text"
           defaultValue={match?.note ?? ""}
           placeholder="ex: meci de vineri"
-          className="mt-1 w-full rounded-md border border-zinc-300 px-3 py-2 text-sm dark:border-zinc-700 dark:bg-zinc-900"
+          className="field-input"
         />
       </div>
 
       <div className="grid grid-cols-2 gap-4">
         <div>
-          <label
-            htmlFor="goals"
-            className="block text-sm font-medium text-zinc-700 dark:text-zinc-300"
-          >
+          <label htmlFor="goals" className="field-label">
             Goluri
           </label>
           <input
@@ -68,14 +59,11 @@ export function MatchForm({ action, submitLabel, match }: MatchFormProps) {
             type="number"
             min={0}
             defaultValue={match?.goals ?? 0}
-            className="mt-1 w-full rounded-md border border-zinc-300 px-3 py-2 text-sm dark:border-zinc-700 dark:bg-zinc-900"
+            className="field-input"
           />
         </div>
         <div>
-          <label
-            htmlFor="assists"
-            className="block text-sm font-medium text-zinc-700 dark:text-zinc-300"
-          >
+          <label htmlFor="assists" className="field-label">
             Assist-uri
           </label>
           <input
@@ -84,16 +72,13 @@ export function MatchForm({ action, submitLabel, match }: MatchFormProps) {
             type="number"
             min={0}
             defaultValue={match?.assists ?? 0}
-            className="mt-1 w-full rounded-md border border-zinc-300 px-3 py-2 text-sm dark:border-zinc-700 dark:bg-zinc-900"
+            className="field-input"
           />
         </div>
       </div>
 
       <div>
-        <label
-          htmlFor="rating"
-          className="block text-sm font-medium text-zinc-700 dark:text-zinc-300"
-        >
+        <label htmlFor="rating" className="field-label">
           Rating personal (1-10, opțional)
         </label>
         <input
@@ -103,14 +88,11 @@ export function MatchForm({ action, submitLabel, match }: MatchFormProps) {
           min={1}
           max={10}
           defaultValue={match?.rating ?? ""}
-          className="mt-1 w-full rounded-md border border-zinc-300 px-3 py-2 text-sm dark:border-zinc-700 dark:bg-zinc-900"
+          className="field-input"
         />
       </div>
 
-      <button
-        type="submit"
-        className="mt-2 rounded-full bg-zinc-900 px-5 py-2.5 text-sm font-medium text-white hover:bg-zinc-700 dark:bg-white dark:text-black dark:hover:bg-zinc-200"
-      >
+      <button type="submit" className="btn-primary mt-2 w-full">
         {submitLabel}
       </button>
     </form>

@@ -15,46 +15,90 @@ export default async function DashboardPage() {
   const avgGoals = totalMatches > 0 ? (totalGoals / totalMatches).toFixed(2) : "0.00";
 
   const stats = [
-    { label: "Meciuri jucate", value: totalMatches },
-    { label: "Goluri", value: totalGoals },
-    { label: "Assist-uri", value: totalAssists },
-    { label: "Medie goluri/meci", value: avgGoals },
+    {
+      label: "Meciuri jucate",
+      value: totalMatches,
+      icon: (
+        <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          d="M4 6h16M4 12h16M4 18h10"
+        />
+      ),
+    },
+    {
+      label: "Goluri",
+      value: totalGoals,
+      icon: (
+        <>
+          <circle cx="12" cy="12" r="9" />
+          <path
+            strokeLinejoin="round"
+            d="m12 8.4 2.8 2-1.1 3.3H10.3l-1.1-3.3 2.8-2Z"
+          />
+        </>
+      ),
+    },
+    {
+      label: "Assist-uri",
+      value: totalAssists,
+      icon: (
+        <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          d="M4 12h13M13 6l6 6-6 6"
+        />
+      ),
+    },
+    {
+      label: "Medie goluri/meci",
+      value: avgGoals,
+      icon: (
+        <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          d="M4 19V9m6 10V5m6 14v-7"
+        />
+      ),
+    },
   ];
 
   return (
     <div>
-      <h1 className="text-2xl font-semibold text-zinc-900 dark:text-zinc-50">
+      <h1 className="font-display text-3xl font-semibold tracking-tight text-foreground">
         Salut, {player.name}
       </h1>
-      <p className="mt-1 text-sm text-zinc-500 dark:text-zinc-400">
+      <p className="mt-1 text-sm text-muted-foreground">
         Statisticile tale de fotbal amator.
       </p>
 
       <div className="mt-6 grid grid-cols-2 gap-4 sm:grid-cols-4">
         {stats.map((stat) => (
-          <div
-            key={stat.label}
-            className="rounded-lg border border-zinc-200 p-4 dark:border-zinc-800"
-          >
-            <p className="text-2xl font-bold text-zinc-900 dark:text-zinc-50">
+          <div key={stat.label} className="card p-4">
+            <span className="flex h-9 w-9 items-center justify-center rounded-full bg-primary/10 text-primary">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="1.8"
+                className="h-5 w-5"
+              >
+                {stat.icon}
+              </svg>
+            </span>
+            <p className="mt-3 font-display text-3xl font-bold text-foreground">
               {stat.value}
             </p>
-            <p className="text-xs text-zinc-500 dark:text-zinc-400">{stat.label}</p>
+            <p className="text-xs text-muted-foreground">{stat.label}</p>
           </div>
         ))}
       </div>
 
-      <div className="mt-8 flex gap-3">
-        <Link
-          href="/meciuri/adauga"
-          className="rounded-full bg-zinc-900 px-5 py-2.5 text-sm font-medium text-white hover:bg-zinc-700 dark:bg-white dark:text-black dark:hover:bg-zinc-200"
-        >
+      <div className="mt-8 flex flex-wrap gap-3">
+        <Link href="/meciuri/adauga" className="btn-primary">
           Adaugă meci
         </Link>
-        <Link
-          href="/meciuri"
-          className="rounded-full border border-zinc-300 px-5 py-2.5 text-sm font-medium text-zinc-900 hover:bg-zinc-100 dark:border-zinc-700 dark:text-zinc-50 dark:hover:bg-zinc-900"
-        >
+        <Link href="/meciuri" className="btn-secondary">
           Istoric meciuri
         </Link>
       </div>

@@ -20,7 +20,7 @@ export default async function EditeazaMeciPage({
 
   return (
     <div>
-      <h1 className="text-2xl font-semibold text-zinc-900 dark:text-zinc-50">
+      <h1 className="font-display text-3xl font-semibold tracking-tight text-foreground">
         Editează meci
       </h1>
       <MatchForm action={updateMatch} submitLabel="Salvează modificările" match={match} />

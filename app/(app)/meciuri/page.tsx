@@ -12,53 +12,49 @@ export default async function MeciuriPage() {
 
   return (
     <div>
-      <div className="flex items-center justify-between">
-        <h1 className="text-2xl font-semibold text-zinc-900 dark:text-zinc-50">
+      <div className="flex items-center justify-between gap-4">
+        <h1 className="font-display text-3xl font-semibold tracking-tight text-foreground">
           Istoric meciuri
         </h1>
-        <Link
-          href="/meciuri/adauga"
-          className="rounded-full bg-zinc-900 px-4 py-2 text-sm font-medium text-white hover:bg-zinc-700 dark:bg-white dark:text-black dark:hover:bg-zinc-200"
-        >
+        <Link href="/meciuri/adauga" className="btn-primary">
           Adaugă meci
         </Link>
       </div>
 
       {matches.length === 0 ? (
-        <p className="mt-6 text-sm text-zinc-500 dark:text-zinc-400">
-          Nu ai niciun meci înregistrat încă.
-        </p>
+        <div className="card mt-6 flex flex-col items-center gap-3 p-10 text-center">
+          <p className="text-sm text-muted-foreground">
+            Nu ai niciun meci înregistrat încă.
+          </p>
+          <Link href="/meciuri/adauga" className="btn-secondary">
+            Adaugă primul meci
+          </Link>
+        </div>
       ) : (
         <ul className="mt-6 flex flex-col gap-3">
           {matches.map((match) => (
-            <li
-              key={match.id}
-              className="rounded-lg border border-zinc-200 p-4 dark:border-zinc-800"
-            >
+            <li key={match.id} className="card p-4">
               <div className="flex items-start justify-between gap-4">
                 <div>
-                  <p className="font-medium text-zinc-900 dark:text-zinc-50">
+                  <p className="font-medium text-foreground">
                     {new Date(match.date).toLocaleDateString("ro-RO")}
                     {match.note ? ` — ${match.note}` : ""}
                   </p>
-                  <p className="mt-1 text-sm text-zinc-500 dark:text-zinc-400">
+                  <p className="mt-1 text-sm text-muted-foreground">
                     {match.goals} goluri · {match.assists} assist-uri
                     {match.rating ? ` · rating ${match.rating}/10` : ""}
                   </p>
                 </div>
-                <div className="flex shrink-0 gap-3 text-sm">
+                <div className="flex shrink-0 items-center gap-1 text-sm">
                   <Link
                     href={`/meciuri/${match.id}`}
-                    className="font-medium text-zinc-700 hover:underline dark:text-zinc-300"
+                    className="rounded-md px-2 py-2 font-medium text-foreground transition-colors hover:bg-muted"
                   >
                     Editează
                   </Link>
                   <form action={deleteMatch}>
                     <input type="hidden" name="id" value={match.id} />
-                    <button
-                      type="submit"
-                      className="font-medium text-red-600 hover:underline dark:text-red-400"
-                    >
+                    <button type="submit" className="btn-danger-ghost">
                       Șterge
                     </button>
                   </form>

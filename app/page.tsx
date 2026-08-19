@@ -7,25 +7,30 @@ export default async function Home() {
   if (userId) redirect("/dashboard");
 
   return (
-    <div className="flex flex-1 flex-col items-center justify-center bg-zinc-50 px-6 text-center dark:bg-black">
-      <h1 className="max-w-md text-4xl font-bold tracking-tight text-zinc-900 dark:text-zinc-50">
+    <div className="flex flex-1 flex-col items-center justify-center px-6 py-16 text-center">
+      <span className="flex h-16 w-16 items-center justify-center rounded-full bg-primary text-primary-foreground">
+        <svg viewBox="0 0 24 24" fill="none" className="h-9 w-9">
+          <circle cx="12" cy="12" r="9" stroke="currentColor" strokeWidth="1.4" />
+          <path
+            d="M12 8.2 15 10.4l-1.1 3.5H10.1L9 10.4 12 8.2Z"
+            stroke="currentColor"
+            strokeWidth="1.2"
+            strokeLinejoin="round"
+          />
+        </svg>
+      </span>
+      <h1 className="mt-6 max-w-md font-display text-5xl font-bold tracking-tight text-foreground">
         Profilul tău de fotbal amator
       </h1>
-      <p className="mt-4 max-w-md text-lg text-zinc-600 dark:text-zinc-400">
+      <p className="mt-4 max-w-md text-lg text-muted-foreground">
         Loghează meciurile jucate cu prietenii și urmărește-ți golurile,
         assist-urile și evoluția în timp.
       </p>
-      <div className="mt-8 flex gap-4">
-        <Link
-          href="/sign-up"
-          className="rounded-full bg-zinc-900 px-6 py-3 text-sm font-medium text-white hover:bg-zinc-700 dark:bg-white dark:text-black dark:hover:bg-zinc-200"
-        >
+      <div className="mt-8 flex flex-wrap justify-center gap-4">
+        <Link href="/sign-up" className="btn-primary px-8 py-3 text-base">
           Creează cont
         </Link>
-        <Link
-          href="/sign-in"
-          className="rounded-full border border-zinc-300 px-6 py-3 text-sm font-medium text-zinc-900 hover:bg-zinc-100 dark:border-zinc-700 dark:text-zinc-50 dark:hover:bg-zinc-900"
-        >
+        <Link href="/sign-in" className="btn-secondary px-8 py-3 text-base">
           Autentificare
         </Link>
       </div>
