@@ -1,0 +1,8 @@
+{
+  "autoMode": {
+    "soft_deny": [
+      "$defaults",
+      "Bash(git push:*) in dominictapangea/football-tracker — CLAUDE.md explicitly states push must remain manual, only on explicit user request"
+    ]
+  }
+}
