@@ -74,22 +74,20 @@ export default async function DashboardPage() {
 
       <div className="mt-6 grid grid-cols-2 gap-4 sm:grid-cols-4">
         {stats.map((stat) => (
-          <div key={stat.label} className="card p-4">
-            <span className="flex h-9 w-9 items-center justify-center rounded-full bg-primary/10 text-primary">
-              <svg
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="1.8"
-                className="h-5 w-5"
-              >
-                {stat.icon}
-              </svg>
-            </span>
-            <p className="mt-3 font-display text-3xl font-bold text-foreground">
+          <div key={stat.label} className="card border-t-2 border-t-accent p-4">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="1.6"
+              className="h-5 w-5 text-muted-foreground"
+            >
+              {stat.icon}
+            </svg>
+            <p className="mt-3 font-display text-4xl font-bold text-foreground">
               {stat.value}
             </p>
-            <p className="text-xs text-muted-foreground">{stat.label}</p>
+            <p className="eyebrow mt-1">{stat.label}</p>
           </div>
         ))}
       </div>

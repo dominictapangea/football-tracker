@@ -8,7 +8,7 @@ export default async function Home() {
 
   return (
     <div className="flex flex-1 flex-col items-center justify-center px-6 py-16 text-center">
-      <span className="flex h-16 w-16 items-center justify-center rounded-full bg-primary text-primary-foreground">
+      <span className="flex h-16 w-16 items-center justify-center rounded-full border border-accent text-accent">
         <svg viewBox="0 0 24 24" fill="none" className="h-9 w-9">
           <circle cx="12" cy="12" r="9" stroke="currentColor" strokeWidth="1.4" />
           <path
@@ -19,7 +19,8 @@ export default async function Home() {
           />
         </svg>
       </span>
-      <h1 className="mt-6 max-w-md font-display text-5xl font-bold tracking-tight text-foreground">
+      <p className="eyebrow mt-5">Fotbal amator · România</p>
+      <h1 className="mt-2 max-w-md font-display text-5xl font-bold tracking-tight text-foreground">
         Profilul tău de fotbal amator
       </h1>
       <p className="mt-4 max-w-md text-lg text-muted-foreground">

@@ -49,10 +49,10 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
 
   return (
     <div className="flex flex-1 flex-col">
-      <header className="sticky top-0 z-10 border-b border-border bg-background/95 backdrop-blur">
+      <header className="sticky top-0 z-10 border-b border-accent/40 bg-background/95 backdrop-blur">
         <nav className="mx-auto flex max-w-3xl items-center justify-between px-4 py-3">
           <Link href="/dashboard" className="flex items-center gap-2 font-display text-xl font-semibold tracking-tight">
-            <span className="flex h-8 w-8 items-center justify-center rounded-full bg-primary text-primary-foreground">
+            <span className="flex h-8 w-8 items-center justify-center rounded-full border border-accent text-accent">
               <svg viewBox="0 0 24 24" fill="none" className="h-5 w-5">
                 <circle cx="12" cy="12" r="9" stroke="currentColor" strokeWidth="1.6" />
                 <path
@@ -73,10 +73,10 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
                   key={item.href}
                   href={item.href}
                   aria-current={active ? "page" : undefined}
-                  className={`rounded-full px-4 py-2 text-sm font-medium transition-colors ${
+                  className={`border-b-2 px-3 py-2 text-sm font-semibold uppercase tracking-wide transition-colors ${
                     active
-                      ? "bg-primary text-primary-foreground"
-                      : "text-muted-foreground hover:bg-muted hover:text-foreground"
+                      ? "border-accent text-foreground"
+                      : "border-transparent text-muted-foreground hover:text-foreground"
                   }`}
                 >
                   {item.label}
@@ -104,8 +104,8 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
                 key={item.href}
                 href={item.href}
                 aria-current={active ? "page" : undefined}
-                className={`flex min-h-14 flex-1 flex-col items-center justify-center gap-0.5 text-xs font-medium transition-colors ${
-                  active ? "text-primary" : "text-muted-foreground"
+                className={`flex min-h-14 flex-1 flex-col items-center justify-center gap-0.5 text-[0.7rem] font-semibold uppercase tracking-wide transition-colors ${
+                  active ? "text-accent" : "text-muted-foreground"
                 }`}
               >
                 <svg

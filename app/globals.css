@@ -1,20 +1,20 @@
 @import "tailwindcss";
 
 :root {
-  --background: #f8fafc;
-  --foreground: #0f172a;
+  --background: #fafaf9;
+  --foreground: #0c0a09;
   --card: #ffffff;
-  --card-foreground: #0f172a;
-  --muted: #f1f5f9;
-  --muted-foreground: #64748b;
-  --border: #e2e8f0;
-  --primary: #f97316;
-  --primary-foreground: #0f172a;
-  --accent: #22c55e;
-  --accent-foreground: #0f172a;
-  --destructive: #ef4444;
+  --card-foreground: #0c0a09;
+  --muted: #f0ede9;
+  --muted-foreground: #57534e;
+  --border: #e7e2dc;
+  --primary: #0c0a09;
+  --primary-foreground: #fafaf9;
+  --accent: #a16207;
+  --accent-foreground: #ffffff;
+  --destructive: #b91c1c;
   --destructive-foreground: #ffffff;
-  --ring: #f97316;
+  --ring: #a16207;
 }
 
 @theme inline {
@@ -38,13 +38,16 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #1f2937;
-    --foreground: #f8fafc;
-    --card: #313742;
-    --card-foreground: #f8fafc;
-    --muted: #37414f;
-    --muted-foreground: #cbd5e1;
-    --border: #374151;
+    --background: #0c0a09;
+    --foreground: #fafaf9;
+    --card: #1c1917;
+    --card-foreground: #fafaf9;
+    --muted: #292524;
+    --muted-foreground: #a8a29e;
+    --border: #3f3a36;
+    --primary: #fafaf9;
+    --primary-foreground: #0c0a09;
+    --accent: #d97706;
   }
 }
 
@@ -58,15 +61,20 @@ h1,
 h2,
 h3 {
   font-family: var(--font-display), var(--font-sans), sans-serif;
+  letter-spacing: -0.01em;
 }
 
 @layer components {
+  .eyebrow {
+    @apply text-xs font-semibold uppercase tracking-[0.16em] text-muted-foreground;
+  }
+
   .btn-primary {
-    @apply inline-flex min-h-11 items-center justify-center gap-2 rounded-full bg-primary px-6 py-2.5 text-sm font-semibold text-primary-foreground transition-colors hover:bg-orange-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:pointer-events-none disabled:opacity-50;
+    @apply inline-flex min-h-11 items-center justify-center gap-2 rounded-md bg-primary px-6 py-2.5 text-sm font-semibold uppercase tracking-wide text-primary-foreground transition-opacity hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:pointer-events-none disabled:opacity-50;
   }
 
   .btn-secondary {
-    @apply inline-flex min-h-11 items-center justify-center gap-2 rounded-full border border-border bg-transparent px-6 py-2.5 text-sm font-semibold text-foreground transition-colors hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background;
+    @apply inline-flex min-h-11 items-center justify-center gap-2 rounded-md border border-border bg-transparent px-6 py-2.5 text-sm font-semibold uppercase tracking-wide text-foreground transition-colors hover:border-accent hover:text-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background;
   }
 
   .btn-danger-ghost {
@@ -78,10 +86,10 @@ h3 {
   }
 
   .field-input {
-    @apply block w-full rounded-lg border border-border bg-card px-3.5 py-2.5 text-base text-foreground shadow-sm transition-colors placeholder:text-muted-foreground focus:border-primary focus:outline-none focus:ring-2 focus:ring-ring/40;
+    @apply block w-full rounded-md border border-border bg-card px-3.5 py-2.5 text-base text-foreground transition-colors placeholder:text-muted-foreground focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent/25;
   }
 
   .card {
-    @apply rounded-xl border border-border bg-card shadow-sm;
+    @apply rounded-lg border border-border bg-card;
   }
 }
