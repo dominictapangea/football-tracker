@@ -4,20 +4,17 @@
 
 Aplicație web pentru jucătorii de fotbal amator din România — cei care joacă informal, cu prietenii, fără afiliere la club — pentru urmărirea individuală a parcursului: meciuri jucate, goluri, assist-uri, evoluție în timp. Detalii de business și scope în [CLAUDE.md](./CLAUDE.md).
 
-<table>
-  <tr>
-    <td><img src="https://github.com/user-attachments/assets/92638b83-cba9-4f61-9231-dff44871a89a" width="220" alt="Dashboard" /></td>
-    <td><img src="https://github.com/user-attachments/assets/5f506897-8717-4978-965a-76e25cf67895" width="220" alt="Istoric meciuri" /></td>
-    <td><img src="https://github.com/user-attachments/assets/fccb9dd2-88c7-4503-8ba1-3d89e432dba7" width="220" alt="Adaugă meci" /></td>
-    <td><img src="https://github.com/user-attachments/assets/9642249a-5d9e-4cf3-8293-1780c4686b24" width="220" alt="Profil" /></td>
-  </tr>
-  <tr>
-    <td align="center">Dashboard</td>
-    <td align="center">Istoric meciuri</td>
-    <td align="center">Adaugă meci</td>
-    <td align="center">Profil</td>
-  </tr>
-</table>
+**Dashboard**
+![Dashboard](https://github.com/user-attachments/assets/92638b83-cba9-4f61-9231-dff44871a89a)
+
+**Istoric meciuri**
+![Istoric meciuri](https://github.com/user-attachments/assets/5f506897-8717-4978-965a-76e25cf67895)
+
+**Adaugă meci**
+![Adaugă meci](https://github.com/user-attachments/assets/fccb9dd2-88c7-4503-8ba1-3d89e432dba7)
+
+**Profil**
+![Profil](https://github.com/user-attachments/assets/9642249a-5d9e-4cf3-8293-1780c4686b24)
 
 ## Funcționalități
 
