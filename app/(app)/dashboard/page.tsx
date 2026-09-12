@@ -24,6 +24,7 @@ export default async function DashboardPage() {
       label: "Meciuri jucate",
       value: totalMatches,
       decimals: 0,
+      accentClass: "border-t-border text-muted-foreground",
       icon: (
         <path
           strokeLinecap="round"
@@ -36,6 +37,7 @@ export default async function DashboardPage() {
       label: "Goluri",
       value: totalGoals,
       decimals: 0,
+      accentClass: "border-t-pitch text-pitch",
       icon: (
         <>
           <circle cx="12" cy="12" r="9" />
@@ -50,6 +52,7 @@ export default async function DashboardPage() {
       label: "Assist-uri",
       value: totalAssists,
       decimals: 0,
+      accentClass: "border-t-accent text-accent",
       icon: (
         <path
           strokeLinecap="round"
@@ -62,6 +65,7 @@ export default async function DashboardPage() {
       label: "Medie goluri/meci",
       value: avgGoals,
       decimals: 2,
+      accentClass: "border-t-gold text-gold",
       icon: (
         <path
           strokeLinecap="round"
@@ -93,20 +97,23 @@ export default async function DashboardPage() {
 
       <StaggerReveal className="mt-6 grid grid-cols-2 gap-4 sm:grid-cols-4">
         {stats.map((stat) => (
-          <div key={stat.label} className="card border-t-2 border-t-accent p-4">
+          <div
+            key={stat.label}
+            className={`card card-interactive border-t-2 p-4 ${stat.accentClass}`}
+          >
             <svg
               viewBox="0 0 24 24"
               fill="none"
               stroke="currentColor"
               strokeWidth="1.6"
-              className="h-5 w-5 text-muted-foreground"
+              className="h-5 w-5"
             >
               {stat.icon}
             </svg>
             <StatCounter
               value={stat.value}
               decimals={stat.decimals}
-              className="mt-3 font-display text-4xl font-bold text-foreground"
+              className="mt-3 font-display text-4xl font-bold tabular-nums text-foreground"
             />
             <p className="eyebrow mt-1">{stat.label}</p>
           </div>
