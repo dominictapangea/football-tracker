@@ -4,6 +4,7 @@ import { prisma } from "@/lib/prisma";
 import { deleteMatch } from "./actions";
 import { StaggerReveal } from "@/components/motion/stagger-reveal";
 import { SubmitButton } from "@/components/motion/submit-button";
+import { MatchStatChip } from "@/components/match-stat-chip";
 
 export default async function MeciuriPage() {
   const player = await getCurrentPlayer();
@@ -35,17 +36,18 @@ export default async function MeciuriPage() {
       ) : (
         <StaggerReveal as="ul" className="mt-6 flex flex-col gap-3">
           {matches.map((match) => (
-            <li key={match.id} className="card p-4">
+            <li key={match.id} className="card card-interactive p-4">
               <div className="flex items-start justify-between gap-4">
                 <div>
                   <p className="font-medium text-foreground">
                     {new Date(match.date).toLocaleDateString("ro-RO")}
                     {match.note ? ` — ${match.note}` : ""}
                   </p>
-                  <p className="mt-1 text-sm text-muted-foreground">
-                    {match.goals} goluri · {match.assists} assist-uri
-                    {match.rating ? ` · rating ${match.rating}/10` : ""}
-                  </p>
+                  <MatchStatChip
+                    goals={match.goals}
+                    assists={match.assists}
+                    rating={match.rating}
+                  />
                 </div>
                 <div className="flex shrink-0 items-center gap-2 text-sm">
                   <Link
