@@ -7,10 +7,10 @@ type MatchStatChipProps = {
 export function MatchStatChip({ goals, assists, rating }: MatchStatChipProps) {
   return (
     <div className="mt-2 flex flex-wrap items-center gap-2">
-      <span className="inline-flex items-center rounded-md bg-pitch/15 px-2 py-0.5 font-display text-sm font-bold tabular-nums text-pitch">
+      <span className="inline-flex items-center rounded-md bg-pitch/15 px-2 py-0.5 font-display text-sm font-bold tabular-nums text-pitch-strong">
         {goals}G
       </span>
-      <span className="inline-flex items-center rounded-md bg-accent/15 px-2 py-0.5 font-display text-sm font-bold tabular-nums text-accent">
+      <span className="inline-flex items-center rounded-md bg-accent/15 px-2 py-0.5 font-display text-sm font-bold tabular-nums text-accent-strong">
         {assists}A
       </span>
       {rating ? (

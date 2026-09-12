@@ -13,7 +13,9 @@
   --accent: #c2410c;
   --accent-foreground: #ffffff;
   --pitch: #15803d;
+  --pitch-strong: #166534;
   --gold: #a16207;
+  --accent-strong: #9a3412;
   --turf: #1b2e1f;
   --destructive: #b91c1c;
   --destructive-foreground: #ffffff;
@@ -35,7 +37,9 @@
   --color-accent: var(--accent);
   --color-accent-foreground: var(--accent-foreground);
   --color-pitch: var(--pitch);
+  --color-pitch-strong: var(--pitch-strong);
   --color-gold: var(--gold);
+  --color-accent-strong: var(--accent-strong);
   --color-turf: var(--turf);
   --color-destructive: var(--destructive);
   --color-destructive-foreground: var(--destructive-foreground);
@@ -56,7 +60,9 @@
     --primary: #fafaf9;
     --primary-foreground: #0c0a09;
     --accent: #f97316;
+    --accent-strong: #f97316;
     --pitch: #22c55e;
+    --pitch-strong: #22c55e;
     --gold: #d97706;
     --ring: #f97316;
     --glow-1: 15% -15%, rgba(249, 115, 22, 0.18);
@@ -171,7 +177,7 @@ h3 {
   background: linear-gradient(
     115deg,
     transparent 40%,
-    color-mix(in srgb, var(--accent-foreground) 35%, transparent) 50%,
+    color-mix(in srgb, var(--primary-foreground) 35%, transparent) 50%,
     transparent 60%
   );
   animation: button-pending-sweep 1.1s ease-in-out infinite;
@@ -189,6 +195,10 @@ h3 {
   }
 
   .card-interactive::after {
+    display: none;
+  }
+
+  [data-transition-sweep] {
     display: none;
   }
 
