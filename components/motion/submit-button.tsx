@@ -32,6 +32,9 @@ export function SubmitButton({
       aria-busy={pending}
       className={`${variantClass[variant]} ${className}`}
     >
+      {pending && variant !== "danger-ghost" ? (
+        <span aria-hidden="true" className="btn-pending-sweep" />
+      ) : null}
       {pending ? (
         <>
           <svg className="h-4 w-4 animate-spin" viewBox="0 0 24 24" fill="none" aria-hidden="true">
