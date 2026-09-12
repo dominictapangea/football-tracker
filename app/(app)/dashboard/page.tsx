@@ -4,6 +4,7 @@ import { prisma } from "@/lib/prisma";
 import { StatCounter } from "@/components/motion/stat-counter";
 import { StaggerReveal } from "@/components/motion/stagger-reveal";
 import { HeroHighlight } from "@/components/motion/hero-highlight";
+import { DashboardTrend } from "@/components/dashboard-trend";
 
 export default async function DashboardPage() {
   const player = await getCurrentPlayer();
@@ -80,6 +81,11 @@ export default async function DashboardPage() {
     },
   ];
 
+  const trendPoints = [...matches]
+    .slice(0, 8)
+    .reverse()
+    .map((m) => ({ date: m.date, goals: m.goals }));
+
   return (
     <div>
       <h1 className="font-display text-3xl font-semibold tracking-tight text-foreground">
@@ -124,6 +130,8 @@ export default async function DashboardPage() {
           </div>
         ))}
       </StaggerReveal>
+
+      {trendPoints.length >= 2 ? <DashboardTrend points={trendPoints} /> : null}
 
       <div className="mt-8 flex flex-wrap gap-3">
         <Link href="/meciuri/adauga" className="btn-primary">
