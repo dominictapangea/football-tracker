@@ -18,6 +18,10 @@ export default async function DashboardPage() {
   const totalAssists = matches.reduce((sum, m) => sum + m.assists, 0);
   const avgGoals = totalMatches > 0 ? totalGoals / totalMatches : 0;
   const latestMatch = matches[0];
+  const maxGoalsInAMatch = matches.reduce((max, m) => Math.max(max, m.goals), 0);
+  const isRecordGoals = Boolean(
+    latestMatch && latestMatch.goals > 0 && latestMatch.goals === maxGoalsInAMatch,
+  );
 
   const stats = [
     {
@@ -92,6 +96,7 @@ export default async function DashboardPage() {
           goals={latestMatch.goals}
           assists={latestMatch.assists}
           rating={latestMatch.rating}
+          isRecordGoals={isRecordGoals}
         />
       ) : null}
 

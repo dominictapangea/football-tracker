@@ -3,6 +3,7 @@
 import { useRef } from "react";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
+import { RecordPulse } from "@/components/motion/record-pulse";
 
 type HeroHighlightProps = {
   dateLabel: string;
@@ -10,9 +11,17 @@ type HeroHighlightProps = {
   goals: number;
   assists: number;
   rating: number | null;
+  isRecordGoals?: boolean;
 };
 
-export function HeroHighlight({ dateLabel, note, goals, assists, rating }: HeroHighlightProps) {
+export function HeroHighlight({
+  dateLabel,
+  note,
+  goals,
+  assists,
+  rating,
+  isRecordGoals = false,
+}: HeroHighlightProps) {
   const ref = useRef<HTMLDivElement>(null);
 
   useGSAP(
@@ -64,7 +73,15 @@ export function HeroHighlight({ dateLabel, note, goals, assists, rating }: HeroH
       </p>
       <div className="relative mt-4 flex flex-wrap gap-6">
         <div data-hero-stat>
-          <p className="font-display text-3xl font-bold text-foreground">{goals}</p>
+          {isRecordGoals ? (
+            <RecordPulse>
+              <p className="font-display text-3xl font-bold tabular-nums text-foreground">
+                {goals}
+              </p>
+            </RecordPulse>
+          ) : (
+            <p className="font-display text-3xl font-bold tabular-nums text-foreground">{goals}</p>
+          )}
           <p className="eyebrow mt-0.5">Goluri</p>
         </div>
         <div data-hero-stat>
