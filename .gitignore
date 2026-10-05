@@ -48,3 +48,11 @@ next-env.d.ts
 
 # clerk configuration (can include secrets)
 /.clerk/
+
+# locally installed AI skills/agents and their config
+/.agents/
+/.codex/
+/.impeccable/
+/.claude/agents/
+/.claude/skills/
+/skills-lock.json
