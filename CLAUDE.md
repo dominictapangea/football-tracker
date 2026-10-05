@@ -113,6 +113,27 @@ Sesiunile de lucru pe acest proiect au acces la un set de skill-uri instalate (p
 - `ui-ux-pro-max:brand` — dacă/când produsul capătă identitate vizuală proprie (nume, ton, culori de brand).
 - `ui-ux-pro-max:banner-design` / `ui-ux-pro-max:slides` / `ui-ux-pro-max:design` (logo, CIP, social) — doar dacă userul cere explicit materiale de marketing/prezentare — nu relevante pentru v1 funcțional.
 
+**Din skill-ul `impeccable` (instalat în proiect, `.claude/skills/impeccable`) — comenzi și verificări pentru UI:**
+- Context de produs în [PRODUCT.md](./PRODUCT.md) (creat cu `/impeccable init`); `DESIGN.md` se generează cu `/impeccable document` când e nevoie de sistemul vizual înregistrat.
+- `/impeccable critique` / `audit` / `polish` — review de UX, verificări tehnice (accesibilitate, performanță, responsive) și trecerea finală, la orice schimbare vizuală mai mare, înainte de commit.
+- `/impeccable bolder` / `quieter` / `animate` / `colorize` / `layout` / `delight` — la îmbunătățiri țintite ale unui ecran sau ale unei componente existente.
+- Hook-ul de design (`/impeccable hooks`) rulează singur după editarea fișierelor UI. Nu adăuga ignore-uri ca să scapi de o problemă reală; repar-o. Excepțiile se fac doar prin `impeccable hooks`, cu motiv scris.
+- Pentru UI nou sau înlocuirea unui look, urmează fluxul impeccable (`shape` / new-work); la refinări mici, păstrează implementarea existentă.
+
+**Din skill-urile taste (`.claude/skills`, sursa `Leonxlnx/taste-skill`) — filtru împotriva rezultatului generic („slop”):**
+- `design-taste-frontend` — ghidul principal anti-generic pentru pagini și redesign; folosește-l alături de `impeccable` la orice lucru vizual nou.
+- `redesign-existing-projects` — la audit și upgrade al unui UI existent fără să strice funcționalitatea (cazul acestui proiect).
+- `high-end-visual-design` — când e nevoie de aspect premium: tipografie, spațiere, umbre, animații.
+- `full-output-enforcement` — când rezultatul trebuie livrat complet, fără placeholdere sau trunchieri.
+- `industrial-brutalist-ui`, `minimalist-ui`, `stitch-design-taste`, `gpt-taste`, `design-taste-frontend-v1` — direcții stilistice alternative; folosește-le doar dacă userul cere explicit acea direcție. Atenție: `minimalist-ui` interzice gradientele, deci intră în conflict cu direcția actuală (glow ambiental, grain).
+- `brandkit`, `image-to-code`, `imagegen-frontend-web`, `imagegen-frontend-mobile` — pentru machete generate ca imagini și materiale de brand; doar la cerere explicită, nu fac parte din fluxul v1.
+- Regulă de conflict: dacă `impeccable`, `ui-ux-pro-max` și un skill taste dau indicații contradictorii, alege un ghid principal pentru acel task și spune-i userului care e. Brief-ul userului câștigă mereu.
+
+**Alte plugin-uri instalate:**
+- `claude-mem` — memorie între sesiuni (context recent injectat la început). Folosește `mem-search` când userul se referă la lucru din conversații anterioare.
+- `playwright` — automatizare de browser pentru verificări vizuale; dacă serverul nu se conectează, folosește browserul integrat al aplicației.
+- `skill-creator` — doar când userul vrea să creeze sau să editeze un skill propriu.
+
 **Skill-uri built-in:**
 - `code-review` — după orice unitate de lucru semnificativă, înainte de commit, pentru bug-uri de corectitudine și oportunități de simplificare.
 - `simplify` — pe cod deja scris, pentru reuse/eficiență, fără să vâneze bug-uri (complementar cu `code-review`).
