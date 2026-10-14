@@ -43,16 +43,5 @@ next-env.d.ts
 
 /app/generated/prisma
 
-# claude code worktrees
-.claude/worktrees/
-
 # clerk configuration (can include secrets)
 /.clerk/
-
-# locally installed AI skills/agents and their config
-/.agents/
-/.codex/
-/.impeccable/
-/.claude/agents/
-/.claude/skills/
-/skills-lock.json
